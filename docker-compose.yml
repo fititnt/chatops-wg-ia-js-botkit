@@ -1,0 +1,16 @@
+version: '3'
+services:
+    nodejs:
+        image: node:alpine
+        user: node
+        working_dir: /home/node/app
+        environment:
+            - NODE_ENV=production
+        volumes:
+            - "./iajsbotkit/:/home/node/app"
+        ports:
+            - "3400:3000"
+        command: "npm start"
+        restart: always
+        labels:
+            - "traefik.frontend.rule=Host: ia005.chatopswg.xyz"

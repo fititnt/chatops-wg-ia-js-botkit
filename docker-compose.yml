@@ -19,3 +19,7 @@ services:
             # chatops-wg-ia-php-botman as example). But in this case
             # this next like is required if `ports: - "3400:3000"` is commented
             - "traefik.port=3000"
+        logging:
+            options:
+                max-size: 10m
+                max-file: '3'

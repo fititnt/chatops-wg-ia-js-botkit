@@ -8,9 +8,14 @@ services:
             - NODE_ENV=production
         volumes:
             - "./iajsbotkit/:/home/node/app"
-        ports:
-            - "3400:3000"
+        # Routing via Traefik; Please remove comments to allow direct access
+        # ports:
+        #    - "3400:3000"
         command: "npm start"
         restart: always
         labels:
             - "traefik.frontend.rule=Host: ia005.chatopswg.xyz"
+            # Normaly Traefik route to port without need to explicit (see
+            # chatops-wg-ia-php-botman as example). But in this case
+            # this next like is required if `ports: - "3400:3000"` is commented
+            - "traefik.port=3000"
